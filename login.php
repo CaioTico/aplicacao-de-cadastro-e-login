@@ -1,69 +1,32 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
-
     <meta charset='utf-8'>
-
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-
-    <title>Tela de Login</title>
-
+    <title>Tela de Loguin</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-
     <link rel='stylesheet' type='text/css' media='screen' href='./_css/login.css'>
-
-
+    <link rel="shortcut icon" href="./favicon/favicon.ico" type="image/x-icon">
+    <script src= './JS/login.js'></script>
 </head>
 
 <body>
-    <div class="container">
-        <form action=''>
-            <div id="colunass">
-                <h1>
-                    INFORMAÇÕES DE CADASTRO
-                </h1>
-                <label for="nomesobrenome">Nome Completo</br></label>
-                <input type="text" id="nomesobrenome" class="input-padrao" required placeholder="Nome Completo"><br>
-                <label for="nomesobrenome">CPF</br></label>
-                <input type="text" id="input" /><span id="resposta"></span><br>
-                <label for="nomesobrenome">Data de Nascimento</br></label>
-                <input type="text" id="date" class="input-padrao" required placeholder="00/00/0000"><br>
-                <label for="telefone">Telefone</br></label>
-                <input type="tel" id="fone" class="input-padrao" required placeholder="(99) 9 9999-9999"><br>
-                <label for="email">E-mail</br></label>
-                <input type="email" id="email" class="input-padrao" required placeholder="seuemail@dominio.com"><br>
-                <label for='senha'>Senha:</br></label>
-                <input type='password' id='senha' placeholder="Digite sua senha:"><br>
-                <label for='senha'>Confirmar Senha:</br></label>
-                <input type='password' id='csenha' placeholder="Digite sua senha:"><br>
-            </div>
-            <div id="colunas">
-                <h1>
-                    ENDEREÇO
-                </h1>
-                <label for="inputCEP">cep:</br></label>
-                <input type="text" class="form-control" id="cep"><br>
-                <label for="rua">Rua</br></label>
-                <input type="text" class="form-control" id="rua" placeholder="Rua dos Bobos"><br>
-                <label for="inputAddress">N.º</br></label>
-                <input type="text" class="form-control" id="numero" placeholder="nº 0"><br>
-                <label for="inputAddress2">Bairro</br></label>
-                <input type="text" class="form-control" id="bairro" placeholder="Apartamento, hotel, casa, etc."><br>
-                <label for="cidade">Cidade</br></label>
-                <input type="text" class="form-control" id="cidade"><br>
-                <label for="estado">Estado</br></label>
-                <input type="text" class="form-control" id="estado"><br>
-                <label for="complemento">complemento</br></label>
-                <input type="text" class="form-control" id="complemento">
-            </div>
-            <br><button id="glow-on-hover" calss="botao" onclick="">CADASTRAR</button>
-        </form>
-    </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script type="text/javascript" src="./JS/login.js"></script>
+    <form action=''>
+            <h1>
+                LOGIN
+            </h1>
+            <p>
+                <label for='email'>E-mail:</label>
+                <input type='email' id='email'name='email' placeholder="Digite seu email:">
+            </p>
+            <p>
+                <label for='senha'>Senha:</label>
+                <input type='password' id='senha' placeholder="Digite sua senha:">
+            </p>
+            <button onclick="acessar(); return false;">
+                Enviar
+            </button>
+    </form>
 </body>
 
 </html>
