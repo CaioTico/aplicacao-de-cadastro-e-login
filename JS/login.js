@@ -1,86 +1,49 @@
-'use strict'; //Modo "Restrito"
-//Consumindo API de CEP, do ViaCep
-// https://viacep.com.br/
+/* Código de validação de formulário de login */
 
-//Limpa o Form (do CEP pra baixo)...
-const limparFormulario = (endereco) =>{
-    document.getElementById('rua').value = '';
-    document.getElementById('bairro').value = '';
-    document.getElementById('cidade').value = '';
-    document.getElementById('estado').value = '';
-}
-
-//Preenche os campos relacionados ao CEP...
-const preencherForumulario = (endereco) =>{
-    document.getElementById('rua').value = endereco.logradouro;
-    document.getElementById('bairro').value = endereco.bairro;
-    document.getElementById('cidade').value = endereco.localidade;
-    document.getElementById('estado').value = endereco.uf;
-}
-
-//Verifica se o CEP é válido...
-const eNumero = (numero) => /^[0-9]+$/.test(numero); //Expressão Regular
-// É possível testar e entender a RegEx em https://www.regexpal.com/
-const cepValido = (cep) => cep.length == 8 && eNumero(cep);
-
-//Consumindo API... 2- passo
-const pesquisarCep = async() => {
-    limparFormulario();
-    const url = `https://viacep.com.br/ws/${cep.value}/json/`;
+function acessar(){
+    let email = document.getElementById('email').value;
+    let senha = document.getElementById('senha').value;
     
-    if(cepValido(cep.value)){
-        const dados = await fetch(url); //await = esperar
-        const addres = await dados.json(); // fetch = promessa
-        
-        // hasOwnProperty  retorna um booleano indicando se o objeto possui a propriedade especificada como uma propriedade definida no próprio objeto em questão
-        if(addres.hasOwnProperty('erro')){ 
-            // document.getElementById('rua').value = 'CEP não encontrado!';
-            alert('CEP não encontrado!');
-        }else {
-            preencherForumulario(addres);
-        }
+    if(!email || !senha){
+        alert("Campos de preenchimento obrigatório. Favor preencher");
     }else{
-        // document.getElementById('rua').value = 'CEP incorreto!';
-        alert('CEP incorreto!');
-    } 
+       window.location.href = "aula2.html";
+    }
 }
 
-//Adicionando um evento DOM, no input CEP... 1- passo
-document.getElementById('cep').addEventListener('focusout', pesquisarCep);
+/* FUNÇÃO PARA ARMAZENAR NOMES EM ARRAY*/
+var dadosLista = [];
 
+function salvarUser(){
 
+  let nomeUser = document.getElementById("nomeUser").value;
 
-function CPF(){
-    "user_strict";
-    function r(r){
-        for(var t=null,n=0;9>n;++n)
-        t+=r.toString().charAt(n)*(10-n);
-        var i=t%11;return i=2>i?0:11-i
+   if(nomeUser){
+    dadosLista.push(nomeUser);
+    criarLista();
+    document.getElementById("nomeUser").value = '';
+}
+}
+
+function criarLista(){
+
+    let tabela = document.getElementById('tabela').innerHTML =  '<tr><th>Nome Usuario</th><th>Ações</th></tr>';
+
+    for(let i = 0;i <= (dadosLista.length - 1);i++){
+        tabela += "<tr><td>" + dadosLista[i] + "</td><td><button class='btn btn-success' onclick='editar(this.parentNode.parentNode.rowIndex)'>Editar</button><button class='btn btn-danger' onclick='excluir(this.parentNode.parentNode.rowIndex)'>Excluir</button></td></tr>";
+        document.getElementById('tabela').innerHTML = tabela;
     }
-        function t(r){
-            for(var t=null,n=0;10>n;++n)t+=r.toString().charAt(n)*(11-n);
-            var i=t%11;return i=2>i?0:11-i
-        }
-        var n="CPF Inválido",i="CPF Válido";
-        this.gera=function(){
-            for(var n="",i=0;9>i;++i)n+=Math.floor(9*Math.random())+"";
-            var o=r(n),a=n+"-"+o+t(n+""+o);return a
-        }
-        ,this.valida=function(o){
-            for(var a=o.replace(/\D/g,""),u=a.substring(0,9),f=a.substring(9,11),v=0;10>v;v++)if(""+u+f==""+v+v+v+v+v+v+v+v+v+v+v)return n;
-            var c=r(u),e=t(u+""+c);
-            return f.toString()===c.toString()+e.toString()?i:n
-        }}
+}
 
+// FUNÇÃO PARA EDITAR NOME
 
+function editar(i){
+    document.getElementById('nomeUser').value = dadosLista[(i - 1)];
+    dadosLista.splice(dadosLista[(i-1)], 1)
+}
 
-   var CPF = new CPF();
-//    document.write(CPF.valida("123.456.789-00"));
-
-$("#input").keypress(function(){
-    $("#resposta").html(CPF.valida($(this).val()));
-});
-
-$("#input").blur(function(){
-     $("#resposta").html(CPF.valida($(this).val()));
-});
+// FUNÇÃO PARA EXCLUIR NOME
+    function excluir(i){
+        dadosLista.splice((i - 1), 1);
+        document.getElementById('tabela').deleteRow(i);
+    }
