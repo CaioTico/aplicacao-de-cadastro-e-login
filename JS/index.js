@@ -1,8 +1,13 @@
-//  Scripts para abrir/fechar o menu hamburguer
+$(document).ready(function() {
+  $('.btn-open-menu').click(function () {
+      $('header').addClass('open');
+  });
 
-    const navIcon = document.querySelector('.nav-icon');
-    const navLinks = document.querySelector('.nav-links');
+  $('.link-menu').click(function () {
+      $('header').removeClass('open');
+  });
 
-    navIcon.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-    });
+  $('.btn-close-menu').click(function () {
+      $('header').removeClass('open');
+  });
+});
