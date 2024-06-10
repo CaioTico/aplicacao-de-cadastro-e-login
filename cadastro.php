@@ -183,9 +183,8 @@
             }
 
             // Se todos os campos estiverem válidos, redireciona para a página index.php
-            window.location.href = 'index.php';
+            window.location.href = 'login.php';
         });
     </script>
 </body>
-
 </html>
